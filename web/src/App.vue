@@ -1,12 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+<template>
+  <div id="app">
+    <h1>人生亦如修行，如履破冰。</h1>
+    <div class="item1"></div>
+    <div class="item2"></div>
+    <div class="item3"></div>
+    <div class="item4"></div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'app',
+}
+</script>
+
 <style>
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 .item1 {
     position: absolute;
     width: 200px;
@@ -14,7 +31,7 @@
     left: 50%;
     margin-left: -398px;
     top: 352px;
-    background-image: url(/img/sunwukong.png);
+    background-image: url(assets/sunwukong.png);
     background-repeat: no-repeat;
     /* -webkit-animation: move 1.4s steps(8) infinite;
     -moz-animation: move 1.4s steps(8) infinite;
@@ -28,7 +45,7 @@
     left: 50%;
     margin-left: -198px;
     top: 356px;
-    background-image: url(/img/zhubajie.png);
+    background-image: url(assets/zhubajie.png);
     background-repeat: no-repeat;
     animation: move2 1.4s steps(8) infinite;
 }
@@ -39,7 +56,7 @@
     left: 50%;
     margin-left: -11px;
     top: 326px;
-    background-image: url(/img/tangsheng.png);
+    background-image: url(assets/tangsheng.png);
     background-repeat: no-repeat;
     animation: move3 1.4s steps(8) infinite;
 }
@@ -50,7 +67,7 @@
     left: 50%;
     margin-left: 198px;
     top: 372px;
-    background-image: url(/img/shawujing.png);
+    background-image: url(assets/shawujing.png);
     background-repeat: no-repeat;
     animation: move4 1.4s steps(8) infinite;
 }
@@ -88,13 +105,6 @@
   }
 }
 body{
-  background-image: url(/img/background.webp)
+  background-image: url(assets/background.webp)
 }
 </style>
-<body>
-  <div class="item1"></div>
-  <div class="item2"></div>
-  <div class="item3"></div>
-  <div class="item4"></div>
-</body>
-</html>
