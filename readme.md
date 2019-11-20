@@ -3,7 +3,6 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 ~~~
 
 创建项目目录
-
 ~~~
 mkdir blog
 ~~~
