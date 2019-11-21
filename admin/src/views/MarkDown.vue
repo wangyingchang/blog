@@ -22,9 +22,17 @@ export default {
           url:'/markdown',
       }).then((res)=> {
         this.data = res.data;
+        console.log(res.data)
       }).catch(()=> {
       });
     }
   }
 }
-</script>>
+</script>
+
+<style>
+pre {
+  background-color: whitesmoke;
+  color: black;
+}
+</style>

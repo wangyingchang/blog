@@ -87,7 +87,6 @@ userRouter.post('/regist', async (req, res, next) => {
 
 // 读取markdown
 userRouter.get("/markdown", async (req, res) => {
-    console.log(1111)
     const fs = require('fs');
     const marked = require('marked');
     const path = "./src/markdown/Vue2.md";
