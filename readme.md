@@ -35,6 +35,10 @@ npm install typescript --save
 mkdir build
 mkdir src
 ~~~
+生成typescript 默认文件
+~~~
+tsc --init
+~~~
 
 修改tsconfig.json
 
