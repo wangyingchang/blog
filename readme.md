@@ -25,7 +25,6 @@ npm init
 ~~~
 npm install express --save
 npm install @types/express --save
-npm install ts-node-dev --save
 npm install typescript --save
 ~~~
 
@@ -58,8 +57,8 @@ tsc --init
 其中dev表示开发环境，当修改文件之后会自动编译，prod是运行环境，执行方法为：npm run dev和npm run prod.
 
 ~~~
-npm install ts-node-dev -g
-npm install supervisor -g
+npm install ts-node-dev --save
+npm install supervisor --save
 ~~~
 
 
@@ -137,4 +136,3 @@ vue add router
 ~~~
 npm run serve
 ~~~
-
