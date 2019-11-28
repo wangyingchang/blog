@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = require("express");
-var app = express();
-var bodyParser = require('body-parser');
+const express = require("express");
+const app = express();
+const bodyParser = require('body-parser');
 // 支持跨域请求
 app.use(require('cors')());
 // 支持post请求

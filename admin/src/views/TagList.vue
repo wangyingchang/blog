@@ -3,29 +3,24 @@
     <h1>标签列表</h1>
     <el-button type="primary" @click="dialogFormVisible = true">新建标签</el-button>
     <el-table
-    :data="tagData"
+    :data="tagList"
     stripe
     style="width: 100%">
     <el-table-column
       prop="id"
       label="ID"
-      width="180"
+      width="100"
       >
     </el-table-column>
     <el-table-column
       prop="name"
       label="分类名"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="alias"
-      label="分类别名"
-      width="180">
+      width="100">
     </el-table-column>
     <el-table-column
       prop="description"
       label="描述"
-      width="180">
+      width="200">
     </el-table-column>
     <el-table-column
       prop="createdAt"
@@ -52,9 +47,6 @@
       <el-form-item label="标签名称" :label-width="formLabelWidth">
         <el-input  v-model="tagModel.name" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="标签别名" :label-width="formLabelWidth">
-        <el-input  v-model="tagModel.alias"></el-input>
-      </el-form-item>
       <el-form-item label="标签描述" :label-width="formLabelWidth">
         <el-input type="textarea" v-model="tagModel.description" ></el-input>
       </el-form-item>
@@ -73,7 +65,7 @@ import date2String from '../utils/index';
 export default {
   data(){
     return {
-      tagData: [],
+      tagList: [],
       tagModel: {},
       dialogFormVisible: false,
       formLabelWidth: '120px'
@@ -90,9 +82,9 @@ export default {
           url:'/api/admin/rest/tag',
       }).then((res)=> {
         console.log(res)
-        // this.tagData = res.data
+        // this.tagList = res.data
         // 处理时间
-        this.tagData = res.data.map((tag)=> {
+        this.tagList = res.data.map((tag)=> {
           tag.createdAt = date2String(new Date(tag.createdAt));
           return tag
         })

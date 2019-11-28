@@ -1,36 +1,35 @@
 <template>
   <div class="about">
     <h1>创建博客</h1>
-    <el-input v-model="model.title" placeholder="请输入内容"></el-input>
+
+    <el-input v-model="blogModel.title" placeholder="请输入文章标题"></el-input>
     
-    <el-select v-model="model.sort" placeholder="请选择文章分类">
+    <el-select v-model="blogModel.sortId" placeholder="请选择文章分类">
       <el-option
-        v-for="item in sortData"
+        v-for="item in sortList"
         :key="item.id"
         :label="item.name"
         :value="item.id">
       </el-option>
     </el-select>
 
-    <el-select
-      v-model="model.tags"
+    <el-select v-model="blogModel.tagIds" placeholder="请选择文章标签"
       multiple
       filterable
       allow-create
       default-first-option
-      placeholder="请选择文章标签">
+      >
       <el-option
-        v-for="item in tagData"
+        v-for="item in tagList"
         :key="item.id"
         :label="item.name"
         :value="item.id">
       </el-option>
     </el-select>
 
-    <el-input v-model="model.image" placeholder="图片"></el-input>
-    <br>
     <div id="content">
     </div>
+
     <el-button @click="save" type="primary">保存</el-button>
   </div>
 </template>
@@ -45,30 +44,47 @@ import Editor from 'tui-editor';
 import date2String from '../utils/index';
 
 
-
 export default {
   data() {
     return {
-      model:{},
-      editor: null,
-      sortData: [],
-      tagData: [],
+      blogModel: {},
+      sortList: [],
+      tagList: [],
+      editor: {},
     }
   },
-  mounted(){
-    this.initData();
-    this.initEditor();
+  async mounted(){
+    await this.initData();
+    await this.initEditor();
   },
   methods: {
     initData() {
+      if (this.$route.query.blogId) {
+        this.$http({
+          method: 'get',
+          url:'/api/admin/rest/blog/'+ this.$route.query.blogId,
+        }).then((res)=> {
+          this.blogModel = res.data;
+          console.log(this.blogModel)
+          this.$message({
+            type: 'success',
+            message: '成功'
+          })
+        }).catch(()=> {
+          this.$message({
+            type: 'error',
+            message: '失败'
+          })
+        });
+      }
+
       // 博客分类数据
       this.$http({
           method: 'get',
           url:'/api/admin/rest/sort',
       }).then((res)=> {
-        console.log(res)
-        // this.sortData = res.data
-        this.sortData = res.data.map((sort)=> {
+        // this.sortList = res.data
+        this.sortList = res.data.map((sort)=> {
           sort.createdAt = date2String(new Date(sort.createdAt));
           return sort
         })
@@ -87,10 +103,9 @@ export default {
           method: 'get',
           url:'/api/admin/rest/tag',
       }).then((res)=> {
-        console.log(res)
-        // this.tagData = res.data
+        // this.tagList = res.data
         // 处理时间
-        this.tagData = res.data.map((tag)=> {
+        this.tagList = res.data.map((tag)=> {
           tag.createdAt = date2String(new Date(tag.createdAt));
           return tag
         })
@@ -106,6 +121,7 @@ export default {
       });
 
     },
+
     initEditor() {
       this.editor = new Editor({
         el: document.querySelector('#content'),
@@ -141,13 +157,13 @@ export default {
     },
 
     save(){
-      this.model.content=this.getValue();
-      console.log(this.model);
+      this.blogModel.content = this.getValue();
+      console.log(this.blogModel);
 
       this.$http({
           method: 'post',
           url:'/createBlog',
-          data: this.model
+          data: this.blogModel
       }).then((res)=> {
         console.log(res)
         this.$message({

@@ -13,20 +13,10 @@ module.exports = {
         allowNull: false,
         defaultValue: 'name',
       },
-      alias:{
-        type: Sequelize.STRING,
-        allowNull: false,
-        defaultValue: 'alias',
-      },
       description: {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: 'description',
-      },
-      parentId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
       },
       createdAt: {
         allowNull: false,

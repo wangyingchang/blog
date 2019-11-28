@@ -14,14 +14,9 @@ module.exports = {
         defaultValue: 'title',
       },
       content: {
-        type: Sequelize.STRING(10000),
+        type: Sequelize.TEXT,
         allowNull: false,
-        defaultValue: 'content',
-      },
-      image:{
-        type: Sequelize.STRING,
-        allowNull: false,
-        defaultValue: 'url',
+        defaultValue: '0',
       },
       views: {
         type: Sequelize.INTEGER,

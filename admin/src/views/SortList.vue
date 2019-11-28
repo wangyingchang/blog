@@ -3,7 +3,7 @@
     <h1>分类列表</h1>
     <el-button type="primary" @click="dialogFormVisible = true">新建分类</el-button>
     <el-table
-    :data="sortData"
+    :data="sortList"
     stripe
     style="width: 100%">
     <el-table-column
@@ -18,19 +18,9 @@
       width="100">
     </el-table-column>
     <el-table-column
-      prop="alias"
-      label="分类别名"
-      width="100">
-    </el-table-column>
-    <el-table-column
       prop="description"
       label="描述"
       width="200">
-    </el-table-column>
-    <el-table-column
-      prop="parentId"
-      label="父分类"
-      width="100">
     </el-table-column>
     <el-table-column
       prop="createdAt"
@@ -58,21 +48,8 @@
       <el-form-item label="分类名称" :label-width="formLabelWidth">
         <el-input  v-model="sortModel.name" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="分类别名" :label-width="formLabelWidth">
-        <el-input  v-model="sortModel.alias"></el-input>
-      </el-form-item>
       <el-form-item label="分类描述" :label-width="formLabelWidth">
         <el-input type="textarea" v-model="sortModel.description" ></el-input>
-      </el-form-item>
-      <el-form-item label="父分类" :label-width="formLabelWidth">
-        <el-select v-model="sortModel.parentId" placeholder="请选择父分类" >
-          <el-option
-            v-for="sort in sortData"
-            :key="sort.id"
-            :label="sort.name"
-            :value="sort.id">
-          </el-option>
-        </el-select>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -89,7 +66,7 @@ import date2String from '../utils/index';
 export default {
   data(){
     return {
-      sortData: [],
+      sortList: [],
       sortModel: {},
       dialogFormVisible: false,
       formLabelWidth: '120px'
@@ -105,8 +82,8 @@ export default {
           url:'/api/admin/rest/sort',
       }).then((res)=> {
         console.log(res)
-        // this.sortData = res.data
-        this.sortData = res.data.map((sort)=> {
+        // this.sortList = res.data
+        this.sortList = res.data.map((sort)=> {
           sort.createdAt = date2String(new Date(sort.createdAt));
           return sort
         })

@@ -1,23 +1,55 @@
 "use strict";
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-// const Sequelize = require('sequelize');
-// const sequelize = require('../config/dbConnect');
-var Sequelize = __importStar(require("sequelize"));
-var dbConnect_1 = __importDefault(require("../config/dbConnect"));
-var Blog = dbConnect_1.default.define('Blog', {
-    title: Sequelize.STRING,
-    content: Sequelize.STRING,
-    image: Sequelize.STRING,
-    views: Sequelize.INTEGER,
+const Sequelize = require('sequelize');
+const sequelize = require('../config/sequelize');
+// import * as Sequelize from "sequelize";
+// import sequelize from "../config/sequelize";
+const Model = Sequelize.Model;
+class Blog extends Model {
+}
+exports.Blog = Blog;
+class BlogSort extends Model {
+}
+exports.BlogSort = BlogSort;
+Blog.init({
+    // 属性
+    title: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    content: {
+        type: Sequelize.TEXT
+        // allowNull 默认为 true
+    },
+    views: {
+        type: Sequelize.INTEGER
+        // allowNull 默认为 true
+    }
+}, {
+    sequelize,
+    modelName: 'blog'
+    // 参数
 });
-module.exports = Blog;
+//const BlogSort = require('./BlogSort')
+BlogSort.init({
+    // 属性
+    blogId: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    sortId: {
+        type: Sequelize.STRING
+    },
+}, {
+    sequelize,
+    modelName: 'blogSort'
+    // 参数
+});
+Blog.hasMany(BlogSort, { foreignKey: 'blogId' });
+BlogSort.belongsTo(Blog, { foreignKey: 'id' });
+// const Blog = sequelize.define('Blog', {
+//   title: Sequelize.STRING,
+//   content: Sequelize.TEXT,
+//   views: Sequelize.INTEGER,
+// });
+//module.exports = Blog;

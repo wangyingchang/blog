@@ -16,7 +16,7 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: '74520.',
+        defaultValue: '123456',
       },
       age: {
         type: Sequelize.INTEGER,
@@ -31,7 +31,7 @@ module.exports = {
       nickname: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: '昵称',
+        defaultValue: '内向的小刺猬',
       },
       email: {
         type: Sequelize.STRING,
@@ -41,7 +41,7 @@ module.exports = {
       avatar: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 'avatar',
+        defaultValue: '0',
       },
       createdAt: {
         allowNull: false,
