@@ -25,7 +25,6 @@ npm init
 ~~~
 npm install express --save
 npm install @types/express --save
-npm install ts-node-dev --save
 npm install typescript --save
 ~~~
 
@@ -34,6 +33,10 @@ npm install typescript --save
 ~~~
 mkdir build
 mkdir src
+~~~
+生成typescript 默认文件
+~~~
+tsc --init
 ~~~
 
 修改tsconfig.json
@@ -54,8 +57,8 @@ mkdir src
 其中dev表示开发环境，当修改文件之后会自动编译，prod是运行环境，执行方法为：npm run dev和npm run prod.
 
 ~~~
-npm install ts-node-dev -g
-npm install supervisor -g
+npm install ts-node-dev --save
+npm install supervisor --save
 ~~~
 
 
@@ -107,7 +110,7 @@ npm install marked fs
 安装 vue-cli
 
 ~~~
-cnpm install -g @vue/cli
+npm install -g @vue/cli
 ~~~
 
 创建 admin
@@ -133,4 +136,3 @@ vue add router
 ~~~
 npm run serve
 ~~~
-
