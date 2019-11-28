@@ -110,7 +110,7 @@ npm install marked fs
 安装 vue-cli
 
 ~~~
-cnpm install -g @vue/cli
+npm install -g @vue/cli
 ~~~
 
 创建 admin
