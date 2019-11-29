@@ -3,38 +3,80 @@
 import * as Sequelize from "sequelize";
 import sequelize from "../config/sequelize";
 
-
 const Model = Sequelize.Model;
-class Blog extends Model {}
 
+class Blog extends Model {}
 Blog.init({
-  // 属性
   title: {
     type: Sequelize.STRING,
     allowNull: false
   },
   content: {
     type: Sequelize.TEXT
-    // allowNull 默认为 true
   },
   views: {
     type: Sequelize.INTEGER
-    // allowNull 默认为 true
   }
 }, {
   sequelize,
-  modelName: 'blog'
-  // 参数
+  modelName: 'Blog'
 });
 
+class BlogSort extends Model {}
+BlogSort.init({
+  blogId: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  sortId: {
+    type: Sequelize.STRING
+  },
+}, {
+  sequelize,
+  modelName: 'BlogSort'
+});
 
-const BlogSort = require('./BlogSort')
-Blog.hasMany(BlogSort,{foreignKey:'blogId'})
+class Sort extends Model {}
+Sort.init({
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  description: {
+    type: Sequelize.STRING
+  },
+}, {
+  sequelize,
+  modelName: 'Sort'
+});
 
-// const Blog = sequelize.define('Blog', {
-//   title: Sequelize.STRING,
-//   content: Sequelize.TEXT,
-//   views: Sequelize.INTEGER,
-// });
+class BlogTag extends Model {}
+BlogTag.init({
+  blogId: {
+    type: Sequelize.STRING,
+  },
+  tagId: {
+    type: Sequelize.STRING
+  },
+}, {
+  sequelize,
+  modelName: 'BlogTag'
+});
+
+class Tag extends Model {}
+Tag.init({
+  name: {
+    type: Sequelize.STRING,
+  },
+  description: {
+    type: Sequelize.STRING
+  },
+}, {
+  sequelize,
+  modelName: 'Tag'
+});
+
+Blog.belongsToMany(Sort, { through: BlogSort , foreignKey: 'blogId', otherKey: 'sortId' })
+Blog.belongsToMany(Tag, { through: BlogTag , foreignKey: 'blogId', otherKey: 'tagId' })
 
 module.exports = Blog;

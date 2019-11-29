@@ -59,6 +59,7 @@ router.delete('/:id', async (req, res) => {
 const authMiddleware = require('../middleware/auth')
 // 资源中间件
 const resourceMiddleware = require('../middleware/resource')
+
 app.use('/api/admin/rest/:resource', authMiddleware(), resourceMiddleware(), router)
 
 const userRouter = require('./userRouter');

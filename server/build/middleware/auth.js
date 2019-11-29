@@ -11,7 +11,6 @@ module.exports = app => {
     const jwt = require('jsonwebtoken');
     return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
         const token = String(req.headers.authorization || '').split(' ').pop();
-        console.log("++++++++++++token: ", req.headers.authorization);
         if (!token) {
             return res.status(500).send({
                 message: '没有token'

@@ -17,15 +17,17 @@ const express_1 = __importDefault(require("express"));
 const blogRouter = express_1.default.Router({
     mergeParams: true
 });
-const Blog = require('../models/Blog');
-const Sort = require('../models/Sort');
-const BlogSort = require('../models/BlogSort');
-const BlogTag = require('../models/BlogTag');
+const models = require('../models');
+// const Sort = require('../models/Sort')
+// const BlogSort = require('../models/BlogSort')
+// const BlogTag = require('../models/BlogTag')
 /**
  * 博客列表
  */
 blogRouter.get('/getBlogList', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    let blogList = yield Blog.findAll();
+    let blogList = yield models.Blog.findAll({
+        include: [models.BlogSort]
+    });
     if (!blogList) {
         return res.send({
             message: '博客列表为空'
@@ -38,7 +40,7 @@ blogRouter.get('/getBlogList', (req, res, next) => __awaiter(void 0, void 0, voi
  *
  */
 blogRouter.post('/createBlog', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const blogInfo = yield Blog.create(req.body);
+    const blogInfo = yield models.Blog.create(req.body);
     if (!blogInfo) {
         return res.status(500).send({
             message: '添加失败'
@@ -49,7 +51,7 @@ blogRouter.post('/createBlog', (req, res, next) => __awaiter(void 0, void 0, voi
             message: '请添加分类ID'
         });
     }
-    const blogSortInfo = yield BlogSort.create({
+    const blogSortInfo = yield models.BlogSort.create({
         blogId: blogInfo.id,
         sortId: req.body.sortId,
     });
@@ -64,7 +66,7 @@ blogRouter.post('/createBlog', (req, res, next) => __awaiter(void 0, void 0, voi
         });
     }
     req.body.tagIds.forEach((tagId) => __awaiter(void 0, void 0, void 0, function* () {
-        const blogTagInfo = yield BlogTag.create({
+        const blogTagInfo = yield models.BlogTag.create({
             blogId: blogInfo.id,
             tagId: tagId,
         });

@@ -4,23 +4,26 @@ const blogRouter = express.Router({
   mergeParams: true
 })
 
-const Blog = require('../models/Blog')
-const Sort = require('../models/Sort')
+const Blog = require('../models/Blog');
 const BlogSort = require('../models/BlogSort')
+const Sort = require('../models/Sort')
 const BlogTag = require('../models/BlogTag')
+const Tag = require('../models/Tag')
 
 /**
  * 博客列表
  */
 blogRouter.get('/getBlogList', async (req, res, next) => {
-  let blogList = await Blog.findAll();
-
-  if (!blogList) {
-    return res.send({
-      message: '博客列表为空'
-    });
-  }
-
+  let blogList = await Blog.findAll({
+    include:[
+      {
+        model: Sort
+      },
+      {
+        model: Tag
+      }
+    ]
+  });
   res.send(blogList)
 })
 

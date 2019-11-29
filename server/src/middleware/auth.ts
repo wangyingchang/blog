@@ -3,7 +3,6 @@ module.exports = app => {
 
     return async (req, res ,next) => {
         const token = String(req.headers.authorization || '').split(' ').pop();
-        console.log("++++++++++++token: ", req.headers.authorization)
 
         if (!token) {
             return res.status(500).send({
