@@ -95,7 +95,7 @@ userRouter.get("/markdown", async (req, res) => {
         if (err) {
             res.send('文件不存在')
         } else {
-            const str = marked(data.toString());
+            const str = (data.toString());
             res.send(str);
         }
     })

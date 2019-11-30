@@ -1,13 +1,18 @@
 <template>
-<el-container style="height: 100vh;">
-  <LeftMenu></LeftMenu>
   <el-container>
-    <el-header style="text-align: right; font-size: 12px">
+    <el-aside width="210px"> 
+      <LeftMenu></LeftMenu>
+    </el-aside>
+  <el-container>
+    <el-header>    
       <TopMenu></TopMenu>
     </el-header>
-    <el-main>
+    <el-main> 
       <router-view></router-view>
     </el-main>
+    <el-footer>
+      footer
+    </el-footer>
   </el-container>
 </el-container>
 </template>
@@ -17,6 +22,7 @@ import LeftMenu from '@/views/LeftMenu.vue'
 import TopMenu from '@/views/TopMenu.vue'
 
 export default {
+  name: 'Main',
   components: {
     LeftMenu,TopMenu
   },
@@ -28,15 +34,20 @@ export default {
 </script>
 
 <style>
-  .el-header {
+  .el-header, .el-footer {
     background-color: #B3C0D1;
     color: #333;
+    text-align: center;
     line-height: 60px;
   }
-  
+
   .el-aside {
-    color: #333;
-    background-color: rgb(238, 241, 246);
+    background-color: #D3DCE6;
+    line-height: 200px;
+  }
+  .el-main {
+    background-color: #E9EEF3;
   }
   
+
 </style>

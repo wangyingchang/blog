@@ -24,6 +24,7 @@
           <template slot-scope="scope">
             <el-button
               size="mini"
+              type="primary"
               @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
             <el-button
               size="mini"
@@ -46,9 +47,10 @@ export default {
   mounted(){
     this.$http({
         method: 'get',
-        url:'/api/admin/rest/blog',
+        url:'/getBlogList',
     }).then((res)=>{
       this.blogList = res.data
+      console.log(this.blogList)
     });
   },
   methods: {
