@@ -24,16 +24,11 @@
             <el-menu-item index="/tag/list">标签管理</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
-        <el-submenu index="2">
-          <template slot="title">
-            <i class="el-icon-notebook-2"></i>
-            <span slot="title">笔记管理</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="/note/list">笔记</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
         <el-menu-item index="/note/list">
+          <i class="el-icon-notebook-1"></i>
+          <span slot="title">笔记管理</span>
+        </el-menu-item>
+        <el-menu-item index="/dairy/list">
           <i class="el-icon-notebook-1"></i>
           <span slot="title">每日一句</span>
         </el-menu-item>

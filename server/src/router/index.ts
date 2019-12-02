@@ -66,6 +66,8 @@ const userRouter = require('./userRouter');
 app.use(userRouter);
 const blogRouter = require('./blogRouter');
 app.use(blogRouter);
+const noteRouter = require('./noteRouter');
+app.use(noteRouter);
 
 // 错误处理函数
 app.use(async (err, req, res, next) => {

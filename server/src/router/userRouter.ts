@@ -85,20 +85,5 @@ userRouter.post('/regist', async (req, res, next) => {
     });
 });
 
-// 读取markdown
-userRouter.get("/markdown", async (req, res) => {
-    const fs = require('fs');
-    const marked = require('marked');
-    const path = "./src/markdown/Vue2.md";
-    console.log(path)
-    fs.readFile(path, (err, data) => {
-        if (err) {
-            res.send('文件不存在')
-        } else {
-            const str = (data.toString());
-            res.send(str);
-        }
-    })
-})
 
 module.exports = userRouter;

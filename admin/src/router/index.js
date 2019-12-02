@@ -6,7 +6,8 @@ import BlogEdit from '../views/BlogEdit'
 import BlogList from '../views/BlogList'
 import SortList from '../views/SortList'
 import TagList from '../views/TagList'
-import MarkDown from '../views/MarkDown'
+import NoteList from '../views/NoteList'
+import NoteEdit from '../views/NoteEdit'
 
 Vue.use(VueRouter)
 
@@ -25,7 +26,8 @@ const routes = [
       { path: '/blog/list', component: BlogList},
       { path: '/sort/list', component: SortList},
       { path: '/tag/list', component: TagList},
-      { path: '/note/list', component: MarkDown},
+      { path: '/note/list', component: NoteList},
+      { path: '/note/edit', component: NoteEdit},
     ]
   },
 ]

@@ -9,23 +9,19 @@
     <el-table-column
       prop="id"
       label="ID"
-      width="100"
       >
     </el-table-column>
     <el-table-column
       prop="name"
-      label="分类名"
-      width="100">
+      label="分类名">
     </el-table-column>
     <el-table-column
       prop="description"
-      label="描述"
-      width="200">
+      label="描述">
     </el-table-column>
     <el-table-column
       prop="createdAt"
       label="创建时间"
-      width="180"
       sortable>
     </el-table-column>
     <el-table-column label="操作">
